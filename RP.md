@@ -19,6 +19,8 @@ Despite the tremendous potential of combinatorial drug therapy, drug combination
 ## Literature Review
 
 - How people make prediction on drug synergy effect?
+  - DeepSynergy
+  - MatchMaker  
 - Limitation of these model
   - Can not tackle under studies tissue
 
@@ -33,6 +35,18 @@ Despite the tremendous potential of combinatorial drug therapy, drug combination
   - Kim 2 does not embed the knowledge of drug target and disease (they make it as a NLP inference task)
   - Before treatment gene expression is not helping
 
+Traditional methods of training synergy effect predictor are based on an assumption that data are sufficient for training models with generizability. ()
+
+However, it is ture that there exists some understudied tissues like (), in these tissues in vivo experiments are difficult to conduct, so there are not sufficient data for model training.
+
+To tackle the understudied tissues problem, researchers have been investigating different ways. 
+Kim 1 manage to used transfer learning to transfer knowledge from data-rich tissue to understudied tissues. 
+CancerGPT transform the original task to a natural language inference task and modify the model of GPT-2 and GPT-3 to generate answer of synergistic and antagonistic based on the knowledge encoded from tabular input of synergy data. 
+LiYu leverage pre-trained models to extract biological and chemical information to obtain initial graph indicating the realtion across drugs, targets, and disease. Then through graph structure learning LiYu is able to obtain the refined graph representaton, and through self-training strategy this model is able to ou
+ter perform other baseline methods.
+
+## Limitation
+The aforementioned methods take solely the gene expression data before the treatment into account. However, () indicated that gene expression profile before treatment is not helping the drug response prediction. Additionally, experiment of LiYu dose not indocate a strong increse of performance using pre-trained models. And the performance of solely utilizing graph structure learning is not examined.
 
 
 ## Method
