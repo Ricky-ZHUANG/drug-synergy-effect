@@ -35,18 +35,18 @@ Despite the tremendous potential of combinatorial drug therapy, drug combination
   - Kim 2 does not embed the knowledge of drug target and disease (they make it as a NLP inference task)
   - Before treatment gene expression is not helping
 
-Traditional methods of training synergy effect predictor are based on an assumption that data are sufficient for training models with generizability. ()
 
-However, it is ture that there exists some understudied tissues like (), in these tissues in vivo experiments are difficult to conduct, so there are not sufficient data for model training.
+Traditional methods for training predictors of synergy effects are based on the assumption that the available data is sufficient to train models with high generalizability. 
 
-To tackle the understudied tissues problem, researchers have been investigating different ways. 
-Kim 1 manage to used transfer learning to transfer knowledge from data-rich tissue to understudied tissues. 
-CancerGPT transform the original task to a natural language inference task and modify the model of GPT-2 and GPT-3 to generate answer of synergistic and antagonistic based on the knowledge encoded from tabular input of synergy data. 
-LiYu leverage pre-trained models to extract biological and chemical information to obtain initial graph indicating the realtion across drugs, targets, and disease. Then through graph structure learning LiYu is able to obtain the refined graph representaton, and through self-training strategy this model is able to ou
-ter perform other baseline methods.
+<ins>However, significant issues arise when dealing with understudied tissues where in vivo experiments are difficult to conduct, leading to an insufficiency of data for model training.</ins> To overcome the challenge of understudied tissues, researchers have been exploring various methods. For instance, Kim 1 (2021) learned the knowledge embedding of drug, cell line from SMILES, MACCS fingerprint, FPKM values and disease type, then utilized transfer learning to transfer knowledge from data-rich tissues to understudied tissues, based on the fact that different tissues share certain biological features, with similar features these tissues might have similar drug response. CancerGPT (Kim et al., 2021) transformed the original task to a natural language inference task and modified the model of GPT-2 and GPT-3 to generate the answer of synergistic and antagonistic based on the knowledge encoded from tabular input of synergy data containing the information of drug cell line drug semsitivity and synergy score. LiYu (Zhang et al., 2020) leveraged pre-trained models to extract biological and chemical information to obtain an initial graph indicating the relationship across drugs, targets, and diseases. Then, through graph structure learning, LiYu was able to obtain the refined graph representation, and through a self-training strategy, this model outperformed other baseline methods.
 
-## Limitation
-The aforementioned methods take solely the gene expression data before the treatment into account. However, () indicated that gene expression profile before treatment is not helping the drug response prediction. Additionally, experiment of LiYu dose not indocate a strong increse of performance using pre-trained models. And the performance of solely utilizing graph structure learning is not examined.
+## Limitation and Improvement
+The aforementioned methods [... kim1 CancerGPT LiYu] take solely the gene expression data before the treatment into account. However, (sk append) has indicated that the gene expression profile before treatment does not significantly assist in predicting drug response. Furthermore, the experiment conducted by LiYu did not reveal a strong increase in performance by using pre-trained models. Additionally, the efficacy of solely utilizing graph structure learning has not been specifically examined in any study to date.
+
+method
+
+Netgp show a strong ability of simulating the bilogical process of gene perturbation, and netgp made a good performance in improving the performance of drug response prediction model. Utilizing netgp, we are able to generate post-treatment gene expression profile and utilize it to make synergy effect preidction.
+Additionally, the work of sun kim2 is able togenerate sub-structures of molecules. Leveraging this algorithm, it is able to conduct data agumentation for understudied thissues.
 
 
 ## Method
