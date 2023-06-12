@@ -61,6 +61,12 @@ In this study we used the work of Sun Kim1 to generate the gene expression profi
 In this study we used graph convolution network to propogate through the data.
 We used self-training because the work of LiYu showed that self-training is able to improve the performance
 
+In this study, we propose a mechanism for drug data augmentation utilizing Sum Kim2 to generate sub-structures of drug molecules and candidate drugs. (introduce sunkim2: ). These generated sub-structures are filtered using (an algorithm: ) to retain the remaining drug data for augmentation purposes. To generate the gene expression profiles after treatment, we employed the netgp developed by Sun Kim1. (introduct netgp: ). Graph convolutional networks were utilized to propagate through the generated data.
+
+Self-training strategy represents a straightforward yet highly effective approach. The strategy involves initially training a model with a particular set of labeled data. Subsequently, the model utilizes the trained information to predict labels for a given set of unlabeled data. Finally, the model retrains and refines itself using a combination of the original labeled data and the newly-predicted labeled data generated through the utilization of the trained model. The self-training strategy has demonstrated its efficacy in numerous studies, making it a popular choice for enhancing model performance. Thus, we utilized self-training as an approach to improve the performance of our proposed mechanism for drug data augmentation.
+
 KPGT    -->drug data
+
 ESM     -->protein
+
 RotatE  -->disease
