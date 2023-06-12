@@ -1,4 +1,4 @@
-# **AI for Drug synergy prediction**
+# **AI for Drug synergy prediction - Data augmentation to tackle understudied tissue problem**
 
 ## Introduction
 
@@ -56,3 +56,11 @@ Additionally, the work of sun kim2 is able togenerate sub-structures of molecule
 - perform data augamentation using the work of Kim 2 (generating sub strugture of the drug)
 - Information propergation via GNN
 
+In this study we introduce a machinanism for drugs data augamentation that used Sum Kim2 to generate the sub-structure of drug molecules and the candidate drugs, then by going through a filter algirithm the reamining drugs data could be used for data augamentation.
+In this study we used the work of Sun Kim1 to generate the gene expression profile after treatment.
+In this study we used graph convolution network to propogate through the data.
+We used self-training because the work of LiYu showed that self-training is able to improve the performance
+
+KPGT    -->drug data
+ESM     -->protein
+RotatE  -->disease
