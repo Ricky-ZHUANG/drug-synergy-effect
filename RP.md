@@ -6,7 +6,7 @@
   - Introduce what is monotheropy and the limitation
   - Drug combination has <ins>better treatment effect</ins> than monotheropy
   - However, using <ins>wrong drug combination may lead to side effect</ins>, also <ins>too many drug combinations</ins> for scientists to detect
-  - Solution to the aforementioned issues is `High Throughput Drug Screening`
+  - Solution to the aforementioned issues is `High Throughput Drug Screening HTS`
 
 - Why this small topic?
   - The performance of High Throughput Drug Screening will decrease as the number of data drcrease
@@ -19,8 +19,8 @@ Despite the tremendous potential of combinatorial drug therapy, drug combination
 ## Literature Review
 
 - How people make prediction on drug synergy effect?
-  - DeepSynergy
-  - MatchMaker  
+  - DeepSynergy: DeepSynergy feed the the chemical descriptors of two drugs and the genomic information of cell line into a multi-layer deep neural network. The embedding information propogate through the neural network and output the synergy score.
+  - MatchMaker: MatchMaker utilize drug specific network and synergy network to make prediction. In drug specific network, single drug chemical descriptor is concatinated with the untreated cells’ gene expression and propogate through a multiple layer neural network to obtain the drug representation. The synergy specific network takes the output of two drug specific networks as input and utilize the drug representation to go through a multiple layer neural network to obtain the synergy score prediction. 
 - Limitation of these model
   - Can not tackle under studies tissue
 
@@ -36,9 +36,9 @@ Despite the tremendous potential of combinatorial drug therapy, drug combination
   - Before treatment gene expression is not helping
 
 
-Traditional methods for training predictors of synergy effects are based on the assumption that the available data is sufficient to train models with high generalizability. 
+Traditional techniques for training predictive models to estimate the presence of synergistic effects between two drugs have commonly relied on the premise that the available data is adequate to produce models that exhibit high generalizability. For instance, DeepSynergy employs a multi-layer deep neural network that takes the chemical descriptors of two drugs along with genomic data from a cell line as inputs. The embedded information propagates via the neural network, which ultimately yields the synergy score output. MatchMaker presents an alternative approach, utilizing both drug-specific networks and synergy-prediction networks to make predictions. Within the drug-specific network, a single-drug chemical descriptor is concatenated with untreated cells’ gene expression data, and these values are propagated through a multiple-layered neural network. This process outputs the drug representation. The synergy-prediction network then takes the output of two drug-specific networks as input and uses drug representation values to propagate the drug representation through a multi-layered neural network, thereby making a prediction for the synergy score.
 
-<ins>However, significant issues arise when dealing with understudied tissues where in vivo experiments are difficult to conduct, leading to an insufficiency of data for model training.</ins> To overcome the challenge of understudied tissues, researchers have been exploring various methods. For instance, Kim 1 (2021) learned the knowledge embedding of drug, cell line from SMILES, MACCS fingerprint, FPKM values and disease type, then utilized transfer learning to transfer knowledge from data-rich tissues to understudied tissues, based on the fact that different tissues share certain biological features, with similar features these tissues might have similar drug response. CancerGPT (Kim et al., 2021) transformed the original task to a natural language inference task and modified the model of GPT-2 and GPT-3 to generate the answer of synergistic and antagonistic based on the knowledge encoded from tabular input of synergy data containing the information of drug cell line drug semsitivity and synergy score. LiYu (Zhang et al., 2020) leveraged pre-trained models to extract biological and chemical information to obtain an initial graph indicating the relationship across drugs, targets, and diseases. Then, through graph structure learning, LiYu was able to obtain the refined graph representation, and through a self-training strategy, this model outperformed other baseline methods.
+<ins>However, significant issues arise when dealing with understudied tissues where in vivo experiments are difficult to conduct, leading to an insufficiency of data for model training.</ins> To overcome the challenge of understudied tissues, researchers have been exploring various methods. For instance, Kim 1 (2021) learned the knowledge embedding of drug, cell line from SMILES, MACCS fingerprint, FPKM values and disease type, then utilized transfer learning to transfer knowledge from data-rich tissues to understudied tissues, based on the fact that different tissues share certain biological features, with similar features these tissues might have similar drug response. CancerGPT (Kim et al., 2021) transformed the original task to a natural language inference task and modified the model of GPT-2 and GPT-3 to generate the answer of synergistic and antagonistic based on the knowledge encoded from tabular input of synergy data containing the information of drug cell line drug semsitivity and synergy score. LiYu (Zhang et al., 2020) leveraged pre-trained models to extract biological chemical and relation information from SMILES amino acid sequence and disease relation data to obtain an initial graph indicating the relationship across drugs, targets, and diseases. Then, through graph structure learning, LiYu was able to obtain the refined graph representation, and through a self-training strategy, this model outperformed other baseline methods.
 
 ## Limitation and Improvement
 The aforementioned methods [... kim1 CancerGPT LiYu] take solely the gene expression data before the treatment into account. However, (sk append) has indicated that the gene expression profile before treatment does not significantly assist in predicting drug response. Furthermore, the experiment conducted by LiYu did not reveal a strong increase in performance by using pre-trained models. Additionally, the efficacy of solely utilizing graph structure learning has not been specifically examined in any study to date.
@@ -60,6 +60,8 @@ In this study we introduce a machinanism for drugs data augamentation that used 
 In this study we used the work of Sun Kim1 to generate the gene expression profile after treatment.
 In this study we used graph convolution network to propogate through the data.
 We used self-training because the work of LiYu showed that self-training is able to improve the performance
+
+
 
 In this study, we propose a mechanism for drug data augmentation utilizing Sum Kim2 to generate sub-structures of drug molecules and candidate drugs. (introduce sunkim2: ). These generated sub-structures are filtered using (an algorithm: ) to retain the remaining drug data for augmentation purposes. To generate the gene expression profiles after treatment, we employed the netgp developed by Sun Kim1. (introduct netgp: ). Graph convolutional networks were utilized to propagate through the generated data.
 
